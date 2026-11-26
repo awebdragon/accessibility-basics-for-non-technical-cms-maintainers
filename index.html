@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Internal Accessibility Testing Examples</title>
+  <title>Accessibility Basics for Website Editors</title>
   <link rel="stylesheet" href="shared.css">
   <style>
     /*************************/
     /* Custom example styles */
     /*************************/
 
-      .example-list {
-        margin-top: 1.5rem;
+      .topic-list {
+        margin: 1.5rem 0 0;
         list-style: none;
-        margin-left: 0;
       }
 
-      .example-list li {
+      .topic-list li {
         border-top: 1px solid #e0e0e0;
         padding: 0.75rem 0;
       }
 
-      .example-list li:last-child {
+      .topic-list li:last-child {
         border-bottom: 1px solid #e0e0e0;
       }
 
-      .example-list a {
+      .topic-list a {
         font-weight: 600;
-        color: #222;
+        font-size: 1.05rem;
       }
 
-      .example-list .example-desc {
+      .topic-list .topic-desc {
         display: block;
-        font-size: 0.875rem;
-        color: #555;
+        font-size: 0.9rem;
+        color: #555;        /* 7.46:1 on #fff */
         margin-top: 0.1rem;
       }
   </style>
@@ -42,25 +41,17 @@
 </head>
 <body>
 
-  <div class="page">
-    <h1>Internal Accessibility Testing Examples</h1>
-    <p class="page-description">Live examples for use during accessibility training. Each page is designed to be scanned with automated tools (axe, ANDI) to illustrate what those tools can and cannot catch.</p>
+  <a href="#topics" class="skip-link">Skip to topics</a>
 
-    <ul id="examples" class="example-list">
-      <li>
-        <a href="false-negative--focus-order/">Focus order false negative</a>
-        <span class="example-desc">Scrambled tab order that automated tools won't flag.</span>
-      </li>
-      <li>
-        <a href="false-negative--link-context/">Link Context false negative</a>
-        <span class="example-desc">Same link text with different destinations causes ambiguous link failures.</span>
-      </li>
-      <li>
-        <a href="false-negative--form-instructions/">Form Instructions & Errors</a>
-        <span class="example-desc">How automated scans miss error and instruction association (both live and on-submit), or how they miss insufficient descriptions in errors and instructions.</span>
-      </li>
+  <main class="page">
+    <h1>Accessibility Basics for Website Editors</h1>
+    <p class="page-description">Live examples for an introductory accessibility training for people who create and maintain website content. Each topic has a page of common mistakes and a page showing how to fix them, ready to check with a testing tool such as ANDI.</p>
+
+    <h2 id="topics">Topics</h2>
+    <ul class="topic-list">
+      <!-- Each link goes to the topic's failing examples; that page links to the fixed version. -->
     </ul>
-  </div>
+  </main>
 
 </body>
 </html>

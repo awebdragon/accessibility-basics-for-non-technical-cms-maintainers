@@ -1,0 +1,14 @@
+{
+  "name": "a11y-page-checks",
+  "private": true,
+  "description": "Local checking tools for the example pages. Not part of the site.",
+  "scripts": {
+    "axe": "node axe-check.js ../.. \"\" images/ images/fixed/ contrast/ contrast/fixed/ links/ links/fixed/ headings/ headings/fixed/ keyboard/ keyboard/fixed/",
+    "validate": "html-validate --config htmlvalidate.json ../../index.html \"../../{images,contrast,links,headings,keyboard,template}/**/*.html\""
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.0",
+    "html-validate": "^9.0.0",
+    "playwright-core": "^1.48.0"
+  }
+}

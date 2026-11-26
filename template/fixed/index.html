@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Topic]: Fixed Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <!--
+    TEMPLATE: fixed examples page.
+    Copy to /<topic>/fixed/index.html. Keep the examples in the same order and
+    with the same names as the failing page so the two line up when switching.
+  -->
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">← All topics</a>
+    </nav>
+
+    <h1>[Topic]: fixed examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="../">Failing examples</a></li>
+        <li><a href="./" aria-current="page">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/">[x.x.x Criterion name] (Level A)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>[Group of people]</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <section class="example" aria-labelledby="ex-1">
+        <h2 id="ex-1">[Example name] <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <!-- the corrected content goes here -->
+        </div>
+        <p class="example-note">[One line: what changed.]</p>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

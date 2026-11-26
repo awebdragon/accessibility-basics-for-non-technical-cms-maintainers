@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accessibility Test Example: [Subject]</title>
+  <title>[Topic]: Failing Examples | Accessibility Basics</title>
   <link rel="stylesheet" href="../shared.css">
   <style>
     /*************************/
@@ -15,18 +15,59 @@
 </head>
 <body>
 
-  <div class="page">
+  <!--
+    TEMPLATE: failing examples page.
+    Copy to /<topic>/index.html. The matching fixed page is /<topic>/fixed/index.html
+    (copy template/fixed/index.html). Everything outside .mock-content must pass.
+  -->
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="../">← Examples</a>
+      <a href="../">← All topics</a>
     </nav>
-    <h1>Accessibility Test Example: [Subject]</h1>
-    <p class="page-description">What this example demonstrates during an accessibility test, typically showcasing areas where an automated scan isn't enough and an assisted manual scan or human judgement comes into play.</p>
+
+    <h1>[Topic]: failing examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="./" aria-current="page">Failing examples</a></li>
+        <li><a href="fixed/">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/">[x.x.x Criterion name] (Level A)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>[Group of people]</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
 
     <div id="example-container">
-      <!-- code to test with scanners goes in here -->
-    </div>
 
-  </div>
+      <section class="example" aria-labelledby="ex-1">
+        <h2 id="ex-1">[Example name] <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- the content being tested goes here -->
+        </div>
+        <p class="example-note">[One line: what to look for.]</p>
+      </section>
+
+    </div>
+  </main>
 
 </body>
 </html>
