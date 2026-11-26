@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images: Fixed Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+
+      .type-intro {
+        color: #555;        /* 7.46:1 on #fff */
+        margin-bottom: 0.5rem;
+      }
+
+      .content-photo {
+        display: block;
+        width: 480px;
+        margin: 0.75rem 0;
+        border-radius: 3px;
+      }
+
+      .labelled-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .labelled-icon img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .logo-link img {
+        display: block;
+        width: 110px;
+      }
+
+      .fact-sheet img {
+        display: block;
+        width: 240px;
+        margin: 0.75rem 0;
+      }
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">← All topics</a>
+    </nav>
+
+    <h1>Images: fixed examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="../">Failing examples</a></li>
+        <li><a href="./" aria-current="page">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content">1.1.1 Non-text Content (Level A)</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/images-of-text">1.4.5 Images of Text (Level AA)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>People who are blind or have low vision</li>
+            <li>People with cognitive, learning, or language disabilities</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <!-- ── Informative images ── -->
+      <h2>Informative images</h2>
+      <p class="type-intro">Images that carry information. The alt text should give the same information.</p>
+
+      <section class="example" aria-labelledby="ex-missing-alt">
+        <h3 id="ex-missing-alt">Alt text that describes the photo <span class="status status--pass">Passes</span></h3>
+        <div class="mock-content">
+          <p><strong>Welcome back!</strong> Fall semester is here, and campus is looking its best.</p>
+          <img class="content-photo" src="https://brand.utah.edu/wp-content/uploads/sites/69/2025/04/brand-banner-homepage.png" alt="Aerial view of the University of Utah campus in fall, with green lawns and buildings in front of the foothills." width="1400" height="701">
+        </div>
+        <p class="example-note">The alt text describes what the photo shows, at the level of detail this short welcome message needs.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-filename-alt">
+        <h3 id="ex-filename-alt">Description instead of a file name <span class="status status--pass">Passes</span></h3>
+        <div class="mock-content">
+          <p><strong>Meet Pepper,</strong> the newest therapy dog visiting the library during finals week.</p>
+          <img class="content-photo" src="https://picsum.photos/id/237/960/640" alt="Pepper, a black Labrador puppy, sitting on a wooden floor and looking up at the camera." width="960" height="640">
+        </div>
+        <p class="example-note">The file name is replaced with a description of what the photo shows.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-wrongly-decorative">
+        <h3 id="ex-wrongly-decorative">Informative image with alt text <span class="status status--pass">Passes</span></h3>
+        <div class="mock-content">
+          <p><strong>Lost dog!</strong> Have you seen this dog? Last seen near the Union building on Tuesday afternoon. Please call the front desk if you spot him.</p>
+          <img class="content-photo" src="https://picsum.photos/id/1025/960/640" alt="A small pug with a black face, wrapped in a pink and green plaid blanket." width="960" height="640">
+        </div>
+        <p class="example-note">The alt text gives screen reader users the same thing the photo gives everyone else: what the dog looks like.</p>
+      </section>
+
+      <!-- ── Decorative images ── -->
+      <h2>Decorative images</h2>
+      <p class="type-intro">Images that add no information, often because the text next to them already says it. They should be skipped.</p>
+
+      <section class="example" aria-labelledby="ex-decorative-icon">
+        <h3 id="ex-decorative-icon">Decorative icon with empty alt text <span class="status status--pass">Passes</span></h3>
+        <div class="mock-content">
+          <p class="labelled-icon">
+            <img src="https://www.utah.edu/_resources/images/fast-facts/icon-location-pin.svg" alt="" width="150" height="150">
+            <span><strong>Location:</strong> Marriott Library, Level 1</span>
+          </p>
+        </div>
+        <p class="example-note">Empty alt text (<code>alt=""</code>, or the CMS's "decorative" option) tells screen readers to skip the icon. The text label does the work.</p>
+      </section>
+
+      <!-- ── Functional images ── -->
+      <h2>Functional images</h2>
+      <p class="type-intro">Images that do something, such as a linked logo or an icon button. The alt text should say what happens, not what it looks like.</p>
+
+      <section class="example" aria-labelledby="ex-logo-link">
+        <h3 id="ex-logo-link">Linked logo with alt text naming the destination <span class="status status--pass">Passes</span></h3>
+        <div class="mock-content">
+          <a class="logo-link" href="https://www.utah.edu/"><img src="https://brand.utah.edu/wp-content/uploads/sites/69/2025/06/UU-Logo-CTR_RGB-1-e1750189007299.png" alt="The University of Utah home page" width="150" height="171"></a>
+        </div>
+        <p class="example-note">The alt text names where the link goes, so the link now has a name.</p>
+      </section>
+
+      <!-- ── Images of text ── -->
+      <h2>Images of text</h2>
+      <p class="type-intro">Images with words in them. The words need to be available as real text: in the alt text, or better, on the page itself.</p>
+
+      <section class="example" aria-labelledby="ex-image-of-text">
+        <h3 id="ex-image-of-text">Words moved onto the page, image made decorative <span class="status status--pass">Passes</span></h3>
+        <div class="mock-content fact-sheet">
+          <p><strong>New resource available</strong> for anyone filing a flood insurance claim:</p>
+          <img src="../../assets/images/nfip_claims-checklist_thumbnail.webp" alt="" width="580" height="580">
+          <p><a href="https://agents.floodsmart.gov/">Read the Flood Insurance Claims Checklist fact sheet on FloodSmart</a></p>
+        </div>
+        <p class="example-note">The title is now real text on the page, so the image no longer carries anything the page doesn't already say, and can be skipped with empty alt text.</p>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

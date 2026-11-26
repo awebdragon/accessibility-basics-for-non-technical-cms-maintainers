@@ -40,7 +40,7 @@ Talking point: the brand gives editors the palette, not the safe pairings. Utah 
 ## Decisions
 
 - `/<topic>/` is the failing page and `/<topic>/fixed/` is the fixed page. No intermediate landing pages. The index links to each failing page.
-- Presenter notes live in `/notes/<topic>.md`, gitignored, and will be deleted after the presentation.
+- Presenter talking points live in one file, `reference-docs/notes.md` (gitignored), separate from this plan. Anything for the talk rather than the pages goes there.
 - University images are hotlinked from their public sites. Images of text come from public-domain US government sources (OSHA, FEMA/NFIP), copied to `assets/images/`. No AI-generated images.
 - The site itself stays neutral, not styled as an official University page. Example content uses made-up departments.
 - Real alt text from the University's sites is not shown as a failure; failing alt text is written by us.
@@ -48,12 +48,12 @@ Talking point: the brand gives editors the palette, not the safe pairings. Utah 
 ## Build steps
 
 - [x] **0. Shared setup.** `shared.css` (version switcher, topic summary, status labels, mock content box, swatches, visually-hidden utility), `template/` and `template/fixed/`, index page, chrome checked.
-- [ ] **1. Images.** See checklist below.
+- [x] **1. Images.** See checklist below.
 - [ ] **2. Contrast and branding.**
 - [ ] **3. Links and jump links.**
 - [ ] **4. Headings and lists.**
 - [ ] **5. Keyboard and focus order.**
-- [ ] **6. Presenter notes** in `/notes/`, one per topic: who is affected, why it matters in 2–3 sentences, what to show in ANDI, and a "stop here" line to keep it basic.
+- [ ] **6. Presenter notes.** Filled in as each topic is built, in `reference-docs/notes.md`. Final pass per topic: who is affected, why it matters in 2–3 sentences, what to show in ANDI, and a "stop here" line to keep it basic.
 - [ ] **7. Final pass.** HTML validation, contrast check of every color used, keyboard walkthrough, ANDI run on every page (presenter), screenshots of each ANDI result as an offline backup.
 
 ## Intended failures, per page
@@ -61,14 +61,19 @@ Talking point: the brand gives editors the palette, not the safe pairings. Utah 
 Fill this in as each page is built. A failing page should show these in ANDI and nothing else; a fixed page should show none of them.
 
 ### images
+Grouped by image type (informative, decorative, functional, images of text). The fixed page keeps the same order and ids, with headings that describe the fix.
+
 Failing page:
-- Content image with a filename as alt
-- Content image with "Image of…" style alt
-- Image whose alt repeats the visible caption
-- Decorative icon next to a text label, with alt text (read twice)
-- Logo link with empty alt (link has no name)
-- Card where image and title are separate links to the same place
-- Image of text (event flyer) with alt "flyer" and no text alternative
+- Informative: campus photo with no alt attribute (axe and ANDI flag it)
+- Informative: puppy photo with a file name as alt (`IMG_4417.JPG`; tools miss it)
+- Informative: "lost dog" photo with `alt=""` (tools miss it)
+- Decorative: location pin icon beside a "Location:" label, with alt "red location pin icon" (tools miss it)
+- Functional: U logo linking to utah.edu with `alt=""`, so the link has no name (axe and ANDI flag it)
+- Image of text: NFIP fact sheet thumbnail with alt "fact sheet graphic" (tools miss it)
+
+Checked: HTML valid; axe reports only `image-alt` and `link-name` on the failing page and nothing on the fixed page. Automated tools catch 2 of the 6, which is itself a talking point.
+
+Images: campus skyline and logo hotlinked from brand.utah.edu, pin icon from utah.edu, dogs from Lorem Picsum (ids 237 and 1025), fact sheet thumbnail from the NFIP agent resource library in `assets/images/`.
 
 ### contrast
 Failing page:

@@ -63,7 +63,7 @@
   }
 
   /* ── Heading scale ── */
-  h2 { font-size: 1.3rem; font-weight: 600; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  h2 { font-size: 1.3rem; font-weight: 600; line-height: 1.3; margin: 4rem 0 0.5rem; }
   h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.3; margin: 1.25rem 0 0.4rem; }
   h4 { font-size: 1rem;   font-weight: 600; margin: 1rem 0 0.3rem; }
   h5 { font-size: 0.9rem; font-weight: 600; margin: 1rem 0 0.3rem; }
@@ -192,7 +192,8 @@
     margin-top: 2rem;
   }
 
-  .example > h2 {
+  .example > h2,
+  .example > h3 {
     display: flex;
     flex-wrap: wrap;
     align-items: center;

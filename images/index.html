@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images: Failing Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+
+      .type-intro {
+        color: #555;        /* 7.46:1 on #fff */
+        margin-bottom: 0.5rem;
+      }
+
+      .content-photo {
+        display: block;
+        width: 480px;
+        margin: 0.75rem 0;
+        border-radius: 3px;
+      }
+
+      .labelled-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .labelled-icon img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .logo-link img {
+        display: block;
+        width: 110px;
+      }
+
+      .fact-sheet img {
+        display: block;
+        width: 240px;
+        margin: 0.75rem 0;
+      }
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">← All topics</a>
+    </nav>
+
+    <h1>Images: failing examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="./" aria-current="page">Failing examples</a></li>
+        <li><a href="fixed/">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content">1.1.1 Non-text Content (Level A)</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/images-of-text">1.4.5 Images of Text (Level AA)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>People who are blind or have low vision</li>
+            <li>People with cognitive, learning, or language disabilities</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <!-- ── Informative images ── -->
+      <h2>Informative images</h2>
+      <p class="type-intro">Images that carry information. The alt text should give the same information.</p>
+
+      <section class="example" aria-labelledby="ex-missing-alt">
+        <h3 id="ex-missing-alt">Missing alt text <span class="status status--fail">Fails</span></h3>
+        <div class="mock-content">
+          <p><strong>Welcome back!</strong> Fall semester is here, and campus is looking its best.</p>
+          <!-- INTENDED FAILURE: no alt attribute -->
+          <img class="content-photo" src="https://brand.utah.edu/wp-content/uploads/sites/69/2025/04/brand-banner-homepage.png" width="1400" height="701">
+        </div>
+        <p class="example-note">The image has no alt text at all, so a screen reader may read out the file name instead.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-filename-alt">
+        <h3 id="ex-filename-alt">File name used as alt text <span class="status status--fail">Fails</span></h3>
+        <div class="mock-content">
+          <p><strong>Meet Pepper,</strong> the newest therapy dog visiting the library during finals week.</p>
+          <!-- INTENDED FAILURE: alt is a file name -->
+          <img class="content-photo" src="https://picsum.photos/id/237/960/640" alt="IMG_4417.JPG" width="960" height="640">
+        </div>
+        <p class="example-note">Some CMSs fill in the file name automatically. A tool can see the alt text is there, but only a person can tell it's meaningless.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-wrongly-decorative">
+        <h3 id="ex-wrongly-decorative">Informative image marked as decorative <span class="status status--fail">Fails</span></h3>
+        <div class="mock-content">
+          <p><strong>Lost dog!</strong> Have you seen this dog? Last seen near the Union building on Tuesday afternoon. Please call the front desk if you spot him.</p>
+          <!-- INTENDED FAILURE: alt="" hides the only description of the dog -->
+          <img class="content-photo" src="https://picsum.photos/id/1025/960/640" alt="" width="960" height="640">
+        </div>
+        <p class="example-note">The photo is the most important part of this notice, but empty alt text (or a "decorative" checkbox) hides it from screen readers completely.</p>
+      </section>
+
+      <!-- ── Decorative images ── -->
+      <h2>Decorative images</h2>
+      <p class="type-intro">Images that add no information, often because the text next to them already says it. They should be skipped.</p>
+
+      <section class="example" aria-labelledby="ex-decorative-icon">
+        <h3 id="ex-decorative-icon">Decorative icon with alt text <span class="status status--fail">Fails</span></h3>
+        <div class="mock-content">
+          <p class="labelled-icon">
+            <!-- INTENDED FAILURE: decorative icon has alt text -->
+            <img src="https://www.utah.edu/_resources/images/fast-facts/icon-location-pin.svg" alt="red location pin icon" width="150" height="150">
+            <span><strong>Location:</strong> Marriott Library, Level 1</span>
+          </p>
+        </div>
+        <p class="example-note">The label already says "Location," so a screen reader hears "red location pin icon, Location: …" before getting to the point.</p>
+      </section>
+
+      <!-- ── Functional images ── -->
+      <h2>Functional images</h2>
+      <p class="type-intro">Images that do something, such as a linked logo or an icon button. The alt text should say what happens, not what it looks like.</p>
+
+      <section class="example" aria-labelledby="ex-logo-link">
+        <h3 id="ex-logo-link">Linked logo with empty alt text <span class="status status--fail">Fails</span></h3>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: the link's only content is an image with alt="", so the link has no name -->
+          <a class="logo-link" href="https://www.utah.edu/"><img src="https://brand.utah.edu/wp-content/uploads/sites/69/2025/06/UU-Logo-CTR_RGB-1-e1750189007299.png" alt="" width="150" height="171"></a>
+        </div>
+        <p class="example-note">The image is the only thing inside the link, so with empty alt text the link has no name. A screen reader just says "link."</p>
+      </section>
+
+      <!-- ── Images of text ── -->
+      <h2>Images of text</h2>
+      <p class="type-intro">Images with words in them. The words need to be available as real text: in the alt text, or better, on the page itself.</p>
+
+      <section class="example" aria-labelledby="ex-image-of-text">
+        <h3 id="ex-image-of-text">Image of text with vague alt text <span class="status status--fail">Fails</span></h3>
+        <div class="mock-content fact-sheet">
+          <p><strong>New resource available</strong> for anyone filing a flood insurance claim:</p>
+          <!-- INTENDED FAILURE: the title only exists inside the image -->
+          <img src="../assets/images/nfip_claims-checklist_thumbnail.webp" alt="fact sheet graphic" width="580" height="580">
+        </div>
+        <p class="example-note">The resource's title only exists inside the picture. Screen reader users hear "fact sheet graphic," and people who zoom in see blurry text.</p>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

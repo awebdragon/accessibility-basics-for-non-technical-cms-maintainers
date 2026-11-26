@@ -18,9 +18,8 @@ template/fixed/index.html  Copy this to start a topic's fixed page.
 <topic>/index.html      Failing examples for a topic (e.g. /images/).
 <topic>/fixed/index.html   Fixed examples for the same topic (e.g. /images/fixed/).
 assets/images/          Local images, when a remote URL is not suitable.
-docs/                   These notes and the build plan. Committed, not linked.
-notes/                  Presenter talking points. Gitignored on purpose (drafts).
-reference-docs/         Source material (interview brief, training notes). Gitignored.
+docs/                   Repo notes, build plan, check tools. Committed, not linked.
+reference-docs/         Source material (interview brief, training notes) and presenter notes (notes.md). Gitignored.
 ```
 
 ### URL convention
