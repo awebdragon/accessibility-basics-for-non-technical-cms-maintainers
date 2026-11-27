@@ -49,7 +49,7 @@ Talking point: the brand gives editors the palette, not the safe pairings. Utah 
 
 - [x] **0. Shared setup.** `shared.css` (version switcher, topic summary, status labels, mock content box, swatches, visually-hidden utility), `template/` and `template/fixed/`, index page, chrome checked.
 - [x] **1. Images.** See checklist below.
-- [ ] **2. Contrast and branding.**
+- [x] **2. Contrast and branding.**
 - [ ] **3. Links and jump links.**
 - [ ] **4. Headings and lists.**
 - [ ] **5. Keyboard and focus order.**
@@ -76,11 +76,25 @@ Checked: HTML valid; axe reports only `image-alt` and `link-name` on the failing
 Images: campus skyline and logo hotlinked from brand.utah.edu, pin icon from utah.edu, dogs from Lorem Picsum (ids 237 and 1025), fact sheet thumbnail from the NFIP agent resource library in `assets/images/`.
 
 ### contrast
+Kept simple on purpose: 4.5:1 for text, 3:1 for link color against surrounding text. Large-text rules, 1.4.11 button boundaries and disabled controls are left to the presenter notes.
+
 Failing page:
-- Accent colors (Granite Peak, Wasatch Sunrise, Mountain Green, Great Salt Lake) as text on white
-- Zion Cinder Cone text on Salt Flat Grey
-- White text over the campus skyline photo with no backing
-- "Required fields are marked in red": meaning by color alone
+- Callout: white text on Wasatch Sunrise, 1.73:1 (axe `color-contrast`)
+- Button: white text on Mountain Green, 2.22:1 (axe `color-contrast`)
+- Paragraph links in Red Rocks with no underline, 2.06:1 against the black text (axe `link-in-text-block`)
+- Banner image: white text on gold, 1.73:1 (tools miss it; check with a color picker). Image has correct alt text so it fails contrast only.
+
+Fixed page: black text on the same gold (12.13:1) and green (9.45:1); links Fix A (Red Rocks, always underlined) and Fix B (Utah Red, 3.19:1 against black text, underline on hover and focus); banner re-rendered with black text.
+
+Guard rails so nothing fails by accident:
+- The button has a 2px `#222` border on both pages, so its green background is never the only thing identifying it (1.4.11).
+- Fix B only works because the paragraph text is pure black. Utah Red against the site's `#222` body text is 2.42:1.
+
+Also on both pages: the brand color swatches with a link to https://brand.utah.edu/branding/colors/ for a live Colour Contrast Analyser check.
+
+Checked: HTML valid; axe reports only the three detectable failures above on the failing page and nothing on the fixed page.
+
+Images: `assets/images/open-house-banner_low-contrast.png` and `open-house-banner_fixed.png`, made by rendering HTML in the browser (no AI), in brand colors.
 
 ### links
 Failing page:

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color and Contrast: Failing Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+
+      /* Callout on a brand-color section background */
+      .callout {
+        padding: 1.25rem 1.5rem;
+        border-radius: 4px;
+        background: #FFB81D;      /* Wasatch Sunrise */
+      }
+
+      .callout--white-text { color: #FFFFFF; }   /* INTENDED FAILURE: 1.73:1 */
+
+      /* Button-style link. The dark border identifies it as a button on its
+         own, so the green background is not the only indicator (1.4.11). */
+      .cta-button {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        border: 2px solid #222;
+        border-radius: 4px;
+        background: #6CC24A;      /* Mountain Green */
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .cta-button--white-text { color: #FFFFFF; }  /* INTENDED FAILURE: 2.22:1 */
+
+      .cta-button:hover,
+      .cta-button:focus-visible {
+        text-decoration: underline;
+      }
+
+      /* Paragraph links */
+      .link-paragraph { color: #000; }
+
+      .link-paragraph--color-only a {
+        color: #890000;           /* Red Rocks: 10.18:1 on white, but only 2.06:1 against the black text */
+        text-decoration: none;    /* INTENDED FAILURE: color is the only difference */
+      }
+
+      .banner {
+        display: block;
+        width: 560px;
+      }
+
+      /* Brand color reference */
+      .brand-colors {
+        margin-top: 3rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .swatch-list {
+        list-style: none;
+        margin: 0.75rem 0 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 0.5rem 1.5rem;
+      }
+
+      .swatch-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .swatch {
+        flex: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid #767676;
+        border-radius: 3px;
+      }
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">← All topics</a>
+    </nav>
+
+    <h1>Color and contrast: failing examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="./" aria-current="page">Failing examples</a></li>
+        <li><a href="fixed/">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">1.4.3 Contrast (Minimum) (Level AA)</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">1.4.1 Use of Color (Level A)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>People with low vision</li>
+            <li>People with color vision deficiency (color blindness)</li>
+            <li>Older adults, as contrast sensitivity fades with age</li>
+            <li>Anyone reading in glare, bright sun, or on a dim screen</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <section class="example" aria-labelledby="ex-section-text">
+        <h2 id="ex-section-text">White text on a light brand color <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: white on Wasatch Sunrise, 1.73:1 -->
+          <div class="callout callout--white-text">
+            <p><strong>Finals week hours:</strong> the Marriott Library is open 24 hours a day, Sunday through Thursday.</p>
+          </div>
+        </div>
+        <p class="example-note">Text needs at least 4.5:1 contrast with its background. White on this gold is 1.73:1.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-button-text">
+        <h2 id="ex-button-text">White text on a button <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: white on Mountain Green, 2.22:1 -->
+          <a class="cta-button cta-button--white-text" href="https://lib.utah.edu/">Book a study room</a>
+        </div>
+        <p class="example-note">Button text follows the same 4.5:1 rule, measured against the button's own color. White on this green is 2.22:1.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-link-color">
+        <h2 id="ex-link-color">Links shown by color alone <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: links differ from the text only by color, 2.06:1 against the black text, no underline -->
+          <p class="link-paragraph link-paragraph--color-only">Need a quiet place to study? You can reserve a room on the <a href="https://lib.utah.edu/">Marriott Library website</a>, find the building on the <a href="https://map.utah.edu/">campus map</a>, or contact the <a href="https://it.utah.edu/help/">IT help desk</a> if you have trouble logging in.</p>
+        </div>
+        <p class="example-note">With no underline, the only clue that these are links is a dark red that barely differs from the black text (2.06:1).</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-image-text">
+        <h2 id="ex-image-text">Low-contrast text in an image <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: white text on gold inside the image, 1.73:1 -->
+          <img class="banner" src="../assets/images/open-house-banner_low-contrast.png" alt="Marriott Library Open House, Saturday, March 7, 10 a.m. to 2 p.m." width="800" height="320">
+        </div>
+        <p class="example-note">Text inside an image has to meet the same 4.5:1 rule (logos are the exception). Testing tools can't read the image, so check it with a color picker.</p>
+      </section>
+
+      <section class="brand-colors" aria-labelledby="brand-colors">
+        <h2 id="brand-colors">University brand colors</h2>
+        <p>From the <a href="https://brand.utah.edu/branding/colors/">University of Utah brand guide's color page</a>. Check each one against white and black with the Colour Contrast Analyser.</p>
+        <ul class="swatch-list">
+          <li><span class="swatch" style="background:#BE0000"></span> Utah Red <code>#BE0000</code></li>
+          <li><span class="swatch" style="background:#000000"></span> Black <code>#000000</code></li>
+          <li><span class="swatch" style="background:#FFFFFF"></span> White <code>#FFFFFF</code></li>
+          <li><span class="swatch" style="background:#707271"></span> Zion Cinder Cone <code>#707271</code></li>
+          <li><span class="swatch" style="background:#708E99"></span> Granite Peak <code>#708E99</code></li>
+          <li><span class="swatch" style="background:#FFB81D"></span> Wasatch Sunrise <code>#FFB81D</code></li>
+          <li><span class="swatch" style="background:#890000"></span> Red Rocks <code>#890000</code></li>
+          <li><span class="swatch" style="background:#6CC24A"></span> Mountain Green <code>#6CC24A</code></li>
+          <li><span class="swatch" style="background:#3ABFC0"></span> Great Salt Lake <code>#3ABFC0</code></li>
+          <li><span class="swatch" style="background:#E2E6E6"></span> Salt Flat Grey <code>#E2E6E6</code></li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>
