@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links: Fixed Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">← All topics</a>
+    </nav>
+
+    <h1>Links: fixed examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="../">Failing examples</a></li>
+        <li><a href="./" aria-current="page">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context">2.4.4 Link Purpose (In Context) (Level A)</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/label-in-name">2.5.3 Label in Name (Level A)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>People who are blind or have low vision</li>
+            <li>People with cognitive, learning, or language disabilities</li>
+            <li>People with limited mobility who use voice control</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <section class="example" aria-labelledby="ex-vague-link">
+        <h2 id="ex-vague-link">Link text that says where it goes <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <p>The University's main website has campus news, upcoming events, and links to every college and department.</p>
+          <p><a href="https://www.utah.edu/">Visit the University of Utah website</a>.</p>
+        </div>
+        <p class="example-note">The link makes sense on its own, even when it's read in a list of links with nothing around it.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-repeated-link">
+        <h2 id="ex-repeated-link">Each card's link text names its card <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <div class="card-row">
+            <div class="card">
+              <h3>Study rooms</h3>
+              <p>Reserve a quiet room at the Marriott Library for up to four hours.</p>
+              <a href="https://lib.utah.edu/">Reserve a study room</a>
+            </div>
+            <div class="card">
+              <h3>Campus map</h3>
+              <p>Find buildings, parking, and accessible entrances across campus.</p>
+              <a href="https://map.utah.edu/">Open the campus map</a>
+            </div>
+            <div class="card">
+              <h3>IT help desk</h3>
+              <p>Get help with passwords, Wi-Fi, and campus software.</p>
+              <a href="https://it.utah.edu/help/">Contact the IT help desk</a>
+            </div>
+          </div>
+        </div>
+        <p class="example-note">The simplest fix: visible link text that says where each link goes. Works for everyone, with no hidden labels. (If the design calls for the same words on every card, see the next example.)</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-label-in-name">
+        <h2 id="ex-label-in-name">Label field that starts with the visible words <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <div class="card-row">
+            <div class="card">
+              <h3>Campus shuttle</h3>
+              <p>Free shuttles connect the Union, the hospital, and Research Park.</p>
+              <a href="https://commuterservices.utah.edu/campus-shuttle/" aria-label="Learn more about the campus shuttle">Learn more</a>
+            </div>
+            <div class="card">
+              <h3>Parking permits</h3>
+              <p>Buy or renew a permit for the semester or the full year.</p>
+              <a href="https://commuterservices.utah.edu/permits/" aria-label="Learn more about parking permits">Learn more</a>
+            </div>
+            <div class="card">
+              <h3>Biking and rolling</h3>
+              <p>Bike racks, repair stations, and routes across campus.</p>
+              <a href="https://commuterservices.utah.edu/biking-rolling/" aria-label="Learn more about biking and rolling">Learn more</a>
+            </div>
+          </div>
+        </div>
+        <div class="example-note">
+          <p><strong>Screen reader users</strong> hear "Learn more about the campus shuttle": clear and specific.</p>
+          <p><strong>Voice control users</strong> say "click Learn more," and it works, because the label starts with the words they see. (With several matches, the software numbers them and asks which one.)</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

@@ -12,11 +12,11 @@ Cut from the bottom if time runs short.
 |---|---|---|---|---|
 | 1 | Images | `images` | 1.1.1 Non-text Content, 1.4.5 Images of Text | No/low vision; cognitive, learning and language disabilities |
 | 2 | Color contrast and branding | `contrast` | 1.4.3 Contrast (Minimum), 1.4.1 Use of Color | Low vision; color vision deficiency; older users; situational (glare, bright sun) |
-| 3 | Links and jump links | `links` | 2.4.4 Link Purpose (In Context), 1.4.1 Use of Color | No/low vision; cognitive, learning and language disabilities; limited mobility (voice control) |
+| 3 | Links | `links` | 2.4.4 Link Purpose (In Context), 2.5.3 Label in Name | No/low vision; cognitive, learning and language disabilities; limited mobility (voice control) |
 | 4 | Headings and lists | `headings` | 1.3.1 Info and Relationships, 2.4.6 Headings and Labels | No/low vision; cognitive, learning and language disabilities |
 | 5 | Keyboard and focus order | `keyboard` | 2.1.1 Keyboard, 2.4.3 Focus Order, 4.1.2 Name, Role, Value | Limited reach, strength or mobility (permanent or temporary); no/low vision |
 
-Topics considered and left out to keep it introductory: documents and PDFs, data tables, video captions, links that open in a new tab.
+Topics considered and left out to keep it introductory: documents and PDFs, data tables, video captions, links that open in a new tab, jump links.
 
 ## Brand color findings
 
@@ -50,9 +50,9 @@ Talking point: the brand gives editors the palette, not the safe pairings. Utah 
 - [x] **0. Shared setup.** `shared.css` (version switcher, topic summary, status labels, mock content box, swatches, visually-hidden utility), `template/` and `template/fixed/`, index page, chrome checked.
 - [x] **1. Images.** See checklist below.
 - [x] **2. Contrast and branding.**
-- [ ] **3. Links and jump links.**
-- [ ] **4. Headings and lists.**
-- [ ] **5. Keyboard and focus order.**
+- [x] **3. Links.**
+- [x] **4. Headings and lists.**
+- [x] **5. Keyboard and focus order.**
 - [ ] **6. Presenter notes.** Filled in as each topic is built, in `reference-docs/notes.md`. Final pass per topic: who is affected, why it matters in 2–3 sentences, what to show in ANDI, and a "stop here" line to keep it basic.
 - [ ] **7. Final pass.** HTML validation, contrast check of every color used, keyboard walkthrough, ANDI run on every page (presenter), screenshots of each ANDI result as an offline backup.
 
@@ -97,25 +97,45 @@ Checked: HTML valid; axe reports only the three detectable failures above on the
 Images: `assets/images/open-house-banner_low-contrast.png` and `open-house-banner_fixed.png`, made by rendering HTML in the browser (no AI), in brand colors.
 
 ### links
+All three examples are genuine Level A failures. Jump links were dropped: their common problems (broken targets, empty `<a id>` anchors) are content-maintenance issues, not WCAG failures. Links shown by color alone are covered on the contrast page.
+
 Failing page:
-- "Click here" and "Read more"
-- Bare URL as link text
-- Several "Register" links to different events
-- Link to a PDF with no file type
-- Links distinguished from text by color alone
-- Table of contents where one jump link targets an ID that does not exist
+- "Click here" in its own paragraph, cut off from the paragraph describing it (2.4.4; tools miss it)
+- Three cards (plain `div`s) each with a "View details" link to a different site (2.4.4; axe misses it, ANDI should raise an ambiguous-link alert). Card headings do not count as link context: W3C lists the preceding-heading technique (H80) as advisory only.
+- Three Commuter Services cards with visible "Learn more" and an `aria-label` of just the card title (2.5.3; axe `label-content-name-mismatch`). Reads fine in a screen reader; fails voice control users. The note spells out the difference between the two.
+
+Fixed page: descriptive link text; card links with descriptive visible text (the simplest fix); "Learn more" cards whose `aria-label` starts with the visible words ("Learn more about the campus shuttle"), for designs that need the same words on every card.
+
+Checked: HTML valid; axe reports only `label-content-name-mismatch` on the failing page and nothing on the fixed page.
 
 ### headings
+The rule taught: headings and lists must be real (programmatic), not plain text made to look like them, and not used for styling. Heading levels show which topics sit under which (the "indented table of contents" test); skipping a level is fine when the structure is right. How a heading looks (size, font) doesn't matter. Multiple or missing `h1`s, empty headings, pasting from Word, and Shift+Enter fake lists are presenter notes only. Description lists are left out.
+
+Examples are `h2`s like every other page, so the mock content starts at `h3`.
+
 Failing page:
-- Bold paragraphs used as headings
-- Heading levels chosen for size
-- Heading used for a large callout that is not a heading
-- A second `h1` in the content
-- Lists typed with dashes and numbers
+- Bold paragraph used as a heading (1.3.1; tools miss it)
+- Announcement set as an `h3` to make it big (1.3.1; tools miss it)
+- "Contact Commuter Services" as an `h4` under "Parking permits", though it's a new topic (1.3.1; tools miss it, no level is skipped)
+- Vague headings "Overview / Details / More" (2.4.6; tools miss it)
+- **Intended pass:** cards with `h4`s directly under the example's `h2` (axe `heading-order` flags it; ANDI doesn't). Same on both pages. Shows a scanner false positive.
+- Bullets typed with dashes and line breaks (1.3.1; tools miss it)
+- Steps numbered by hand in separate paragraphs (1.3.1; tools miss it)
+
+Fixed page: real `h3`; announcement as a styled paragraph (`.announcement`); "Contact Commuter Services" moved up to `h3`; descriptive headings; `ul` for the unordered list, `ol` for the steps.
+
+Checked: HTML valid; axe reports only `heading-order` (the intended false positive) on both pages.
+
+The index page also has a short "paste as plain text" note (Ctrl+Shift+V), since pasted formatting can cause problems on every topic.
 
 ### keyboard
+Grouped under two `h2`s: "Test it and report it" (problems built into the design or code, which editors can find with Tab but not fix) and "Fix it in the editor". Examples are `h3`s. Image-plus-text links to the same place were dropped: extra tab stops are a usability point, not a failure (presenter notes).
+
 Failing page:
-- Empty link left behind by the editor
-- Image link and text link to the same place (duplicate tab stops)
-- Layout where the visual order differs from the reading order
-- Embedded iframe with no title
+- Test and report: three "Step" cards flipped with `row-reverse`, so they read 1, 2, 3 but Tab visits 3, 2, 1 (2.4.3), plus a `div` "Email me this checklist" button that only responds to a mouse click (2.1.1). Tools miss both; found by pressing Tab.
+- Fix in the editor: empty link after deleted link text (2.4.4, 4.1.2; axe `link-name`, html-validate `wcag/h30`)
+- Fix in the editor: Google Maps embed with no `title` (4.1.2; axe `frame-title`, html-validate `element-required-attributes`)
+
+Fixed page: cards in code order 1, 2, 3; a real `<button>`; link text restored (note mentions unlinking as the other fix); `title="Map of the J. Willard Marriott Library"`.
+
+Checked: HTML valid apart from the two intended errors; axe reports only `link-name` and `frame-title` on the failing page and nothing on the fixed page (plus a `frame-tested` review notice on both, from the third-party map). Scripted Tab walkthrough confirmed the 3, 2, 1 order, the skipped button and the focusable empty link on the failing page, and the 1, 2, 3, button order (Enter works) on the fixed page. The map renders.

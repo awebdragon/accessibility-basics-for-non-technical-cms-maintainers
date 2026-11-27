@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Headings and Lists: Failing Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+
+      .card h4 {
+        margin: 0 0 0.5rem;
+      }
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">← All topics</a>
+    </nav>
+
+    <h1>Headings and lists: failing examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="./" aria-current="page">Failing examples</a></li>
+        <li><a href="fixed/">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">1.3.1 Info and Relationships (Level A)</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels">2.4.6 Headings and Labels (Level AA)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>People who are blind or have low vision</li>
+            <li>People with cognitive, learning, or language disabilities</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <section class="example" aria-labelledby="ex-fake-heading">
+        <h2 id="ex-fake-heading">Bold text used as a heading <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: a bold paragraph that looks like a heading but isn't one -->
+          <p><strong>Parking permits</strong></p>
+          <p>Permits are sold by semester or for the full year. Prices depend on the lot.</p>
+        </div>
+        <p class="example-note">It looks like a heading, but it's a bold paragraph. It won't appear in a screen reader's list of headings, so people can't jump to it.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-styling-heading">
+        <h2 id="ex-styling-heading">Heading used to make text bigger <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: an announcement marked as a heading only to make it large -->
+          <h3>Permit sales open August 1. Buy early to get your first-choice lot!</h3>
+          <p>Permits are sold by semester or for the full year. Prices depend on the lot.</p>
+        </div>
+        <p class="example-note">This is an announcement, not the title of a section. Screen reader users jumping between headings land on it and expect a new topic.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-nesting">
+        <h2 id="ex-nesting">New topic placed under the wrong heading <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <h3>Parking permits</h3>
+          <p>Permits are sold by semester or for the full year.</p>
+          <h4>Permit prices</h4>
+          <p>Prices depend on the lot, from $150 to $600 a year.</p>
+          <!-- INTENDED FAILURE: "Contact Commuter Services" is a new topic, not part of "Parking permits" -->
+          <h4>Contact Commuter Services</h4>
+          <p>Call, email, or visit the Commuter Services office.</p>
+        </div>
+        <p class="example-note">"Contact Commuter Services" isn't part of "Parking permits," but its level puts it there. Test: list only the headings, indented like a table of contents. Does each one sit under the right parent?</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-vague-heading">
+        <h2 id="ex-vague-heading">Headings that don't describe their section <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <!-- INTENDED FAILURE: generic headings that say nothing about their section -->
+          <h3>Overview</h3>
+          <p>Free shuttles run between the Union, the hospital, and Research Park every 10 minutes.</p>
+          <h3>Details</h3>
+          <p>Shuttles run 7 a.m. to 6 p.m. on weekdays when classes are in session.</p>
+          <h3>More</h3>
+          <p>Riders who need a lift-equipped shuttle can request one by phone.</p>
+        </div>
+        <p class="example-note">In a list of headings, "Overview, Details, More" tells someone nothing about what's on the page.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-skipped-level">
+        <h2 id="ex-skipped-level">Cards that skip a heading level <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <!-- NOT A FAILURE: h2 to h4 skips a level, which most scanners flag, but each card is a subtopic of the h2 -->
+          <div class="card-row">
+            <div class="card">
+              <h4>Study rooms</h4>
+              <p>Reserve a quiet room at the Marriott Library for up to four hours.</p>
+              <a href="https://lib.utah.edu/">Reserve a study room</a>
+            </div>
+            <div class="card">
+              <h4>Campus map</h4>
+              <p>Find buildings, parking, and accessible entrances across campus.</p>
+              <a href="https://map.utah.edu/">Open the campus map</a>
+            </div>
+            <div class="card">
+              <h4>IT help desk</h4>
+              <p>Get help with passwords, Wi-Fi, and campus software.</p>
+              <a href="https://it.utah.edu/help/">Contact the IT help desk</a>
+            </div>
+          </div>
+        </div>
+        <p class="example-note">Most scanners flag this because the cards jump from a level 2 heading to level 4. It still passes: each card is a subtopic of the heading above it, so the structure is right.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-fake-bullets">
+        <h2 id="ex-fake-bullets">Bullets typed with dashes <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <p>To buy a permit, you'll need:</p>
+          <!-- INTENDED FAILURE: dashes and line breaks instead of a bulleted list -->
+          <p>- Your uNID<br>
+          - Your vehicle's license plate number<br>
+          - A credit card or campus account</p>
+        </div>
+        <p class="example-note">It looks like a list, but it's one paragraph. Screen readers don't say "list, 3 items," so listeners don't know how many things are coming.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-fake-numbers">
+        <h2 id="ex-fake-numbers">Steps numbered by hand <span class="status status--fail">Fails</span></h2>
+        <div class="mock-content">
+          <p>How to buy a permit:</p>
+          <!-- INTENDED FAILURE: typed numbers in separate paragraphs instead of a numbered list -->
+          <p>1. Log in to the Commuter Services portal.</p>
+          <p>2. Choose a permit type and lot.</p>
+          <p>3. Pay online. Your permit is linked to your license plate.</p>
+        </div>
+        <p class="example-note">Three separate paragraphs that happen to start with numbers. Nothing tells a screen reader they're steps, or how many there are.</p>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

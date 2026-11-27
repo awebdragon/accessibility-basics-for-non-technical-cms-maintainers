@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Headings and Lists: Fixed Examples | Accessibility Basics</title>
+  <link rel="stylesheet" href="../../shared.css">
+  <style>
+    /*************************/
+    /* Custom example styles */
+    /*************************/
+
+      .card h4 {
+        margin: 0 0 0.5rem;
+      }
+
+      /* Large, bold announcement text without making it a heading */
+      .announcement {
+        font-size: 1.15rem;
+        font-weight: 600;
+        border-left: 4px solid #BE0000;   /* decorative; text is #222 on #fff */
+        padding-left: 0.75rem;
+      }
+  </style>
+
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+  <a href="#example-container" class="skip-link">Skip to examples</a>
+
+  <main class="page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">← All topics</a>
+    </nav>
+
+    <h1>Headings and lists: fixed examples</h1>
+
+    <nav class="version-switch" aria-label="Example version">
+      <ul>
+        <li><a href="../">Failing examples</a></li>
+        <li><a href="./" aria-current="page">Fixed examples</a></li>
+      </ul>
+    </nav>
+
+    <dl class="topic-meta">
+      <div>
+        <dt>WCAG success criteria</dt>
+        <dd>
+          <ul>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">1.3.1 Info and Relationships (Level A)</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels">2.4.6 Headings and Labels (Level AA)</a></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Who is most affected</dt>
+        <dd>
+          <ul>
+            <li>People who are blind or have low vision</li>
+            <li>People with cognitive, learning, or language disabilities</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <div id="example-container">
+
+      <section class="example" aria-labelledby="ex-fake-heading">
+        <h2 id="ex-fake-heading">A real heading <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <h3>Parking permits</h3>
+          <p>Permits are sold by semester or for the full year. Prices depend on the lot.</p>
+        </div>
+        <p class="example-note">Set with the editor's heading menu, so it shows up in the list of headings and people can jump to it.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-styling-heading">
+        <h2 id="ex-styling-heading">Announcement styled as large text, not a heading <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <p class="announcement">Permit sales open August 1. Buy early to get your first-choice lot!</p>
+          <p>Permits are sold by semester or for the full year. Prices depend on the lot.</p>
+        </div>
+        <p class="example-note">Still big and bold, but as a styled paragraph (a callout or "large text" style), so it stays out of the heading list.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-nesting">
+        <h2 id="ex-nesting">New topic at the right level <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <h3>Parking permits</h3>
+          <p>Permits are sold by semester or for the full year.</p>
+          <h4>Permit prices</h4>
+          <p>Prices depend on the lot, from $150 to $600 a year.</p>
+          <h3>Contact Commuter Services</h3>
+          <p>Call, email, or visit the Commuter Services office.</p>
+        </div>
+        <p class="example-note">"Permit prices" is part of "Parking permits," so it sits one level below. "Contact Commuter Services" is its own topic, so it moves back up to the same level as "Parking permits."</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-vague-heading">
+        <h2 id="ex-vague-heading">Headings that describe their section <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <h3>How the campus shuttle works</h3>
+          <p>Free shuttles run between the Union, the hospital, and Research Park every 10 minutes.</p>
+          <h3>Shuttle hours</h3>
+          <p>Shuttles run 7 a.m. to 6 p.m. on weekdays when classes are in session.</p>
+          <h3>Accessible rides</h3>
+          <p>Riders who need a lift-equipped shuttle can request one by phone.</p>
+        </div>
+        <p class="example-note">Read as a list, the headings now work like a table of contents for the page.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-skipped-level">
+        <h2 id="ex-skipped-level">Cards that skip a heading level <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <!-- NOT A FAILURE: h2 to h4 skips a level, which most scanners flag, but each card is a subtopic of the h2 -->
+          <div class="card-row">
+            <div class="card">
+              <h4>Study rooms</h4>
+              <p>Reserve a quiet room at the Marriott Library for up to four hours.</p>
+              <a href="https://lib.utah.edu/">Reserve a study room</a>
+            </div>
+            <div class="card">
+              <h4>Campus map</h4>
+              <p>Find buildings, parking, and accessible entrances across campus.</p>
+              <a href="https://map.utah.edu/">Open the campus map</a>
+            </div>
+            <div class="card">
+              <h4>IT help desk</h4>
+              <p>Get help with passwords, Wi-Fi, and campus software.</p>
+              <a href="https://it.utah.edu/help/">Contact the IT help desk</a>
+            </div>
+          </div>
+        </div>
+        <p class="example-note">Unchanged from the failing page. Most scanners flag the jump from level 2 to level 4, but each card is a subtopic of the heading above it, so the structure is right.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-fake-bullets">
+        <h2 id="ex-fake-bullets">A bulleted list <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <p>To buy a permit, you'll need:</p>
+          <ul>
+            <li>Your uNID</li>
+            <li>Your vehicle's license plate number</li>
+            <li>A credit card or campus account</li>
+          </ul>
+        </div>
+        <p class="example-note">Made with the editor's list button. Screen readers announce "list, 3 items." Bullets, because the order doesn't matter.</p>
+      </section>
+
+      <section class="example" aria-labelledby="ex-fake-numbers">
+        <h2 id="ex-fake-numbers">A numbered list <span class="status status--pass">Passes</span></h2>
+        <div class="mock-content">
+          <p>How to buy a permit:</p>
+          <ol>
+            <li>Log in to the Commuter Services portal.</li>
+            <li>Choose a permit type and lot.</li>
+            <li>Pay online. Your permit is linked to your license plate.</li>
+          </ol>
+        </div>
+        <p class="example-note">Numbers, because the steps happen in order. The editor adds the numbers and keeps them correct when a step is added or removed.</p>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>
